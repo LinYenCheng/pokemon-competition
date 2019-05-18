@@ -1,0 +1,285 @@
+@import './tournament';
+
+* {
+  font-family: PingFang TC, 黑體-繁, Heiti TC, 蘋果儷中黑, Apple LiGothic Medium, 微軟正黑體, Microsoft JhengHei, sans-serif !important;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+  cursor: pointer;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 15px;
+}
+
+@media (min-width: 38em) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 52em) {
+  html {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 72em) {
+  html {
+    font-size: 16px;
+  }
+}
+
+body {
+  background-color: #f1f1f1;
+  font-family: 'Work Sans', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.container {
+  width: 90%;
+  min-width: 18em;
+  margin: 20px auto 0;
+}
+
+h1,
+h2 {
+  text-align: center;
+}
+
+h1 {
+  height: 2rem;
+  margin-right: 5px;
+  padding-top: 5px;
+  font-size: 2rem;
+
+  img {
+    height: 2rem;
+    padding-right: 5px;
+  }
+}
+
+h2 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 2em;
+}
+
+footer {
+  display: block;
+  background-color: #282c34;
+  color: #fff;
+  line-height: 50px;
+  height: 50px;
+  position: relative;
+  font-size: 1.2rem;
+
+  img {
+    height: 1.2rem;
+    vertical-align: middle;
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+
+  @media only screen and (min-width: 600px) {
+    margin-top: 87px;
+  }
+
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.desktop--hide {
+  display: none;
+
+  @media only screen and (max-width: 600px) {
+    display: block;
+  }
+}
+
+.mobile--hide {
+  display: block;
+
+  @media only screen and (max-width: 600px) {
+    display: none;
+  }
+}
+
+.pokemons {
+  margin-top: 25px;
+}
+
+.pokemons img {
+  display: inline-block;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.competition__table {
+  text-align: left;
+  margin: 0 auto;
+
+  td {
+    padding-top: 5px;
+    border-bottom: 1px solid #58585A;
+
+    &:first-child {
+      border-bottom: none;
+    }
+  }
+
+  .td--first {
+    min-width: 100px;
+  }
+}
+
+.modal--custom {
+  padding: 15px 10px;
+  border: 4px solid #EF4036;
+  border-radius: 2px;
+  max-width: 90vw;
+
+  @media only screen and (max-width: 600px) {
+    max-width: 100vw;
+    padding: 25px 0px;
+
+    img {
+      max-width: 100%;
+    }
+  }
+}
+
+.modal__closeButton {
+  cursor: pointer;
+
+  svg {
+    fill: #58585A;
+  }
+}
+
+.modal__overlay {
+  background: rgba(0, 0, 0, 0.5);
+
+  @media only screen and (max-width: 600px) {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.competition-form {
+  margin-top: 35px;
+  min-width: 300px;
+
+  input,
+  select {
+    display: block;
+    min-height: 50px;
+    width: 100%;
+    max-width: 250px;
+    padding-left: 10px;
+    margin: 15px auto;
+    font-size: 20px;
+    border: 2px solid #58585A;
+    border-radius: 5px;
+  }
+
+  .competition-form__logo {
+    display: block;
+    max-width: 80px;
+    margin: 0 auto 35px;
+    animation: App-logo-spin infinite 5s linear;
+  }
+
+  .competition-form__button {
+    display: block;
+    min-height: 50px;
+    width: 100%;
+    max-width: 250px;
+    margin: 15px auto 35px;
+    color: #fff;
+    font-size: 30px;
+    border-radius: 5px;
+    background: #EF4036;
+    border: none;
+
+    img {
+      max-width: 80px;
+
+      &:active {
+        animation: App-logo-spin infinite 5s linear;
+      }
+
+      &:focus {
+        animation: App-logo-spin infinite 5s linear;
+      }
+    }
+
+    &:active {
+      border: none;
+      outline: none;
+      transform: translate(2px, 2px);
+    }
+
+    &:focus {
+      border: none;
+      outline: none;
+    }
+  }
+}
