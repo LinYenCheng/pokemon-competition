@@ -24,6 +24,9 @@ function App() {
   let bronzeMedal = [];
   let goldMedal = [];
 
+  const objScoredPlayer = {};
+  let arrayScoredPlayers = [];
+
   let blockCycles = '';
   let blockSemiFinals = '';
   let blockBronzeMedal = '';
@@ -72,7 +75,17 @@ function App() {
       }
       return (
         <li key={gameRecord.id} className="tournament-bracket__item">
-          <div className="tournament-bracket__match" tabIndex="0" onClick={() => { setNowRecord(gameRecord); }}>
+          <div
+            className="tournament-bracket__match"
+            tabIndex="0"
+            onClick={() => {
+              if (gameRecord.type !== 'semifinal') {
+                setNowRecord(gameRecord);
+              } else {
+                alert('不提供編輯');
+              }
+            }}
+          >
             <table className="tournament-bracket__table">
               <caption className="tournament-bracket__caption">
                 <time dateTime={gameRecord.date}>{gameRecord.date}</time>
@@ -133,17 +146,91 @@ function App() {
 
   if (cycles.length) {
     blockCycles = getTournamentBrackets(cycles);
+    cycles.forEach((cycle) => {
+      if (objScoredPlayer[cycle.playerOne]) {
+        objScoredPlayer[cycle.playerOne] += cycle.scoreOne;
+      } else {
+        objScoredPlayer[cycle.playerOne] = cycle.scoreOne;
+      }
+      if (objScoredPlayer[cycle.playerTwo]) {
+        objScoredPlayer[cycle.playerTwo] += cycle.scoreTwo;
+      } else {
+        objScoredPlayer[cycle.playerTwo] = cycle.scoreTwo;
+      }
+    });
+    for (let [key, value] of Object.entries(objScoredPlayer)) {
+      // console.log(`${key}: ${value}`);
+      arrayScoredPlayers.push({
+        name: key,
+        score: value,
+      });
+    }
+    const filterArrayScoredPlayers = arrayScoredPlayers
+      .filter(player => player.score);
+    // console.log(filterArrayScoredPlayers);
+    if (filterArrayScoredPlayers.length > 0) {
+      arrayScoredPlayers = arrayScoredPlayers.sort((a, b) => {
+        if (a.score > b.score) {
+          return -1;
+        }
+        if (a.score < b.score) {
+          return 1;
+        }
+        return 0;
+      });
+    } else {
+      arrayScoredPlayers.length = 0;
+    }
   }
 
   if (semifinals.length) {
+    if (arrayScoredPlayers.length) {
+      semifinals = semifinals.map((semifinal, index) => {
+        return ({
+          ...semifinal,
+          playerOne: arrayScoredPlayers[index * 2].name,
+          scoreOne: arrayScoredPlayers[index * 2].score,
+          playerTwo: arrayScoredPlayers[index * 2 + 1].name,
+          scoreTwo: arrayScoredPlayers[index * 2 + 1].score,
+        });
+      });
+    }
+
     blockSemiFinals = getTournamentBrackets(semifinals);
   }
 
   if (bronzeMedal.length) {
+    if (arrayScoredPlayers.length) {
+      bronzeMedal[0] = {
+        ...bronzeMedal[0],
+        playerOne: arrayScoredPlayers[2].name,
+        playerTwo: arrayScoredPlayers[3].name,
+      };
+    } else {
+      bronzeMedal[0] = {
+        ...bronzeMedal[0],
+        playerOne: '積分第3',
+        playerTwo: '積分第4',
+      };
+    }
     blockBronzeMedal = getTournamentBrackets(bronzeMedal);
   }
 
   if (goldMedal.length) {
+    if (arrayScoredPlayers.length) {
+      goldMedal[0] = {
+        ...goldMedal[0],
+        playerOne: arrayScoredPlayers[0].name,
+        playerTwo: arrayScoredPlayers[1].name,
+      };
+    } else {
+      bronzeMedal[0] = {
+        ...bronzeMedal[0],
+        playerOne: '積分第1',
+        playerTwo: '積分第2',
+      };
+    }
+
     blockGoldMedal = getTournamentBrackets(goldMedal);
   }
 

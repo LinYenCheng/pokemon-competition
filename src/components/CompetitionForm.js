@@ -41,17 +41,21 @@ class CompetitionForm extends Component {
   handleSubmit() {
     const { onCloseModal } = this.props;
     const queryString = this.constructor.getQueryString(this.state);
-    this.setState({ isLoading: true }, () => {
-      fetch('https://script.google.com/macros/s/AKfycbwi5JFiiC0F82aBsvUjoAyAvKcFn9ZJdRXNyxEuUD5W8tPlhnqr/exec?' + queryString)
-        .then(function (response) {
-          return response.json();
-        })
-        .then(function (myJson) {
-          if (myJson && myJson.status) {
-            onCloseModal();
-          }
-        });
-    });
+    if (this.state.type !== 'semifinal') {
+      this.setState({ isLoading: true }, () => {
+        fetch('https://script.google.com/macros/s/AKfycbwi5JFiiC0F82aBsvUjoAyAvKcFn9ZJdRXNyxEuUD5W8tPlhnqr/exec?' + queryString)
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (myJson) {
+            if (myJson && myJson.status) {
+              onCloseModal();
+            }
+          });
+      });
+    } else {
+      onCloseModal();
+    }
   }
 
   render() {
