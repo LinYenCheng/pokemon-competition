@@ -1,0 +1,67 @@
+@import './common/common';
+
+.caption {
+  .row {
+    display: flex;
+  }
+}
+
+a {
+  @include pc-width {
+
+    &:active,
+    &:hover {
+      .hero__card {
+        opacity: 1;
+
+        img {
+          transform: scale(1.1);
+          transition: all 0.5s;
+        }
+      }
+    }
+  }
+
+  .hero__card {
+    opacity: 0.6;
+
+    .card__image-container {
+      overflow: hidden;
+      text-align: center;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    .pokemon__image {
+      padding: 0px;
+      display: inline-block;
+      text-align: center;
+      vertical-align: top;
+      max-width: 35%;
+      overflow: hidden;
+
+      img {
+        max-width: 80%;
+        min-width: 70px;
+        margin: 0 auto;
+        transform: none !important;
+      }
+    }
+
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24);
+  }
+
+  .hero__card--select {
+    opacity: 1;
+    box-shadow: inset 0px -5px $second-color;
+  }
+
+  .padding--mobile {
+    @include phone-width() {
+      padding-right: 5px;
+      padding-left: 5px;
+    }
+  }
+}

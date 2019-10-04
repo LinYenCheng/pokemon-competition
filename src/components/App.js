@@ -1,18 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import Modal from 'react-responsive-modal';
+import React, { useState, useEffect } from "react";
+import Modal from "react-responsive-modal";
 
-import logo from '../img/pokeball.png';
+import logo from "../img/pokeball.png";
 
-import imgBlastoise from '../img/Blastoise.png';
-import imgCharizard from '../img/Charizard.png';
-import imgPikachu from '../img/Pikachu.png';
+import imgBlastoise from "../img/Blastoise.png";
+import imgCharizard from "../img/Charizard.png";
+import imgPikachu from "../img/Pikachu.png";
 
-import imgNote from '../img/note.png';
-import imgNote1 from '../img/note_1.png';
-import imgNote2 from '../img/note_2.png';
+import imgNote from "../img/note.png";
+import imgNote1 from "../img/note_1.png";
+import imgNote2 from "../img/note_2.png";
 
-import '../styles/App.scss';
-import CompetitionForm from './CompetitionForm';
+import "../styles/App.scss";
+import CompetitionForm from "./CompetitionForm";
+import HeroList from "./HeroList";
 
 function App() {
   const [gameRecords, setGameRecords] = useState([]);
@@ -27,20 +28,26 @@ function App() {
   const objScoredPlayer = {};
   let arrayScoredPlayers = [];
 
-  let blockCycles = '';
-  let blockSemiFinals = '';
-  let blockBronzeMedal = '';
-  let blockGoldMedal = '';
+  let blockCycles = "";
+  let blockSemiFinals = "";
+  let blockBronzeMedal = "";
+  let blockGoldMedal = "";
 
   let blockTip = (
-    <div className="mobile--hide" style={{ overflow: 'auto', marginTop: '25px' }}>
+    <div
+      className="mobile--hide"
+      style={{ overflow: "auto", marginTop: "25px" }}
+    >
       <img alt="" src={imgNote} />
     </div>
   );
 
   if (window.innerWidth < 700) {
     blockTip = (
-      <div className="desktop--hide" style={{ overflow: 'auto', marginTop: '25px' }}>
+      <div
+        className="desktop--hide"
+        style={{ overflow: "auto", marginTop: "25px" }}
+      >
         <img className="desktop--hide" alt="" src={imgNote1} />
         <img className="desktop--hide" alt="" src={imgNote2} />
       </div>
@@ -48,10 +55,16 @@ function App() {
   }
 
   if (gameRecords.length) {
-    cycles = gameRecords.filter(gameRecord => gameRecord.type === 'cycle');
-    semifinals = gameRecords.filter(gameRecord => gameRecord.type === 'semifinal');
-    bronzeMedal = gameRecords.filter(gameRecord => gameRecord.type === 'bronzeMedal');
-    goldMedal = gameRecords.filter(gameRecord => gameRecord.type === 'goldMedal');
+    cycles = gameRecords.filter(gameRecord => gameRecord.type === "cycle");
+    semifinals = gameRecords.filter(
+      gameRecord => gameRecord.type === "semifinal"
+    );
+    bronzeMedal = gameRecords.filter(
+      gameRecord => gameRecord.type === "bronzeMedal"
+    );
+    goldMedal = gameRecords.filter(
+      gameRecord => gameRecord.type === "goldMedal"
+    );
   }
 
   function onCloseModal() {
@@ -64,13 +77,15 @@ function App() {
 
   function getTournamentBrackets(records) {
     return records.map(gameRecord => {
-      let strClassPlayerOne = 'tournament-bracket__team';
-      let strClassPlayerTwo = 'tournament-bracket__team';
+      let strClassPlayerOne = "tournament-bracket__team";
+      let strClassPlayerTwo = "tournament-bracket__team";
       if (gameRecord.scoreOne || gameRecord.scoreTwo) {
         if (gameRecord.scoreOne >= gameRecord.scoreTwo) {
-          strClassPlayerOne = 'tournament-bracket__team tournament-bracket__team--winner';
+          strClassPlayerOne =
+            "tournament-bracket__team tournament-bracket__team--winner";
         } else {
-          strClassPlayerTwo = 'tournament-bracket__team tournament-bracket__team--winner';
+          strClassPlayerTwo =
+            "tournament-bracket__team tournament-bracket__team--winner";
         }
       }
       return (
@@ -79,10 +94,10 @@ function App() {
             className="tournament-bracket__match"
             tabIndex="0"
             onClick={() => {
-              if (gameRecord.type !== 'semifinal') {
+              if (gameRecord.type !== "semifinal") {
                 setNowRecord(gameRecord);
               } else {
-                alert('不提供編輯');
+                alert("不提供編輯");
               }
             }}
           >
@@ -99,18 +114,26 @@ function App() {
               <tbody className="tournament-bracket__content">
                 <tr className={strClassPlayerOne}>
                   <td className="tournament-bracket__country">
-                    <abbr className="tournament-bracket__code" title="Russia">{gameRecord.playerOne}</abbr>
+                    <abbr className="tournament-bracket__code" title="Russia">
+                      {gameRecord.playerOne}
+                    </abbr>
                   </td>
                   <td className="tournament-bracket__score">
-                    <span className="tournament-bracket__number">{gameRecord.scoreOne}</span>
+                    <span className="tournament-bracket__number">
+                      {gameRecord.scoreOne}
+                    </span>
                   </td>
                 </tr>
                 <tr className={strClassPlayerTwo}>
                   <td className="tournament-bracket__country">
-                    <abbr className="tournament-bracket__code" title="Belarus">{gameRecord.playerTwo}</abbr>
+                    <abbr className="tournament-bracket__code" title="Belarus">
+                      {gameRecord.playerTwo}
+                    </abbr>
                   </td>
                   <td className="tournament-bracket__score">
-                    <span className="tournament-bracket__number">{gameRecord.scoreTwo}</span>
+                    <span className="tournament-bracket__number">
+                      {gameRecord.scoreTwo}
+                    </span>
                   </td>
                 </tr>
               </tbody>
@@ -131,11 +154,13 @@ function App() {
 
   useEffect(() => {
     if (!isModalOpen) {
-      fetch('https://script.google.com/macros/s/AKfycbwi5JFiiC0F82aBsvUjoAyAvKcFn9ZJdRXNyxEuUD5W8tPlhnqr/exec?action=read')
-        .then(function (response) {
+      fetch(
+        "https://script.google.com/macros/s/AKfycbwi5JFiiC0F82aBsvUjoAyAvKcFn9ZJdRXNyxEuUD5W8tPlhnqr/exec?action=read"
+      )
+        .then(function(response) {
           return response.json();
         })
-        .then(function (myJson) {
+        .then(function(myJson) {
           if (myJson && myJson.records) {
             // console.log(myJson.records);
             setGameRecords(myJson.records);
@@ -146,7 +171,7 @@ function App() {
 
   if (cycles.length) {
     blockCycles = getTournamentBrackets(cycles);
-    cycles.forEach((cycle) => {
+    cycles.forEach(cycle => {
       if (objScoredPlayer[cycle.playerOne]) {
         objScoredPlayer[cycle.playerOne] += cycle.scoreOne;
       } else {
@@ -162,11 +187,12 @@ function App() {
       // console.log(`${key}: ${value}`);
       arrayScoredPlayers.push({
         name: key,
-        score: value,
+        score: value
       });
     }
-    const filterArrayScoredPlayers = arrayScoredPlayers
-      .filter(player => player.score);
+    const filterArrayScoredPlayers = arrayScoredPlayers.filter(
+      player => player.score
+    );
     // console.log(filterArrayScoredPlayers);
     if (filterArrayScoredPlayers.length > 0) {
       arrayScoredPlayers = arrayScoredPlayers.sort((a, b) => {
@@ -186,13 +212,13 @@ function App() {
   if (semifinals.length) {
     if (arrayScoredPlayers.length) {
       semifinals = semifinals.map((semifinal, index) => {
-        return ({
+        return {
           ...semifinal,
           playerOne: arrayScoredPlayers[index * 2].name,
           scoreOne: arrayScoredPlayers[index * 2].score,
           playerTwo: arrayScoredPlayers[index * 2 + 1].name,
-          scoreTwo: arrayScoredPlayers[index * 2 + 1].score,
-        });
+          scoreTwo: arrayScoredPlayers[index * 2 + 1].score
+        };
       });
     }
 
@@ -204,13 +230,13 @@ function App() {
       bronzeMedal[0] = {
         ...bronzeMedal[0],
         playerOne: arrayScoredPlayers[2].name,
-        playerTwo: arrayScoredPlayers[3].name,
+        playerTwo: arrayScoredPlayers[3].name
       };
     } else {
       bronzeMedal[0] = {
         ...bronzeMedal[0],
-        playerOne: '積分第3',
-        playerTwo: '積分第4',
+        playerOne: "積分第3",
+        playerTwo: "積分第4"
       };
     }
     blockBronzeMedal = getTournamentBrackets(bronzeMedal);
@@ -221,13 +247,13 @@ function App() {
       goldMedal[0] = {
         ...goldMedal[0],
         playerOne: arrayScoredPlayers[0].name,
-        playerTwo: arrayScoredPlayers[1].name,
+        playerTwo: arrayScoredPlayers[1].name
       };
     } else {
       bronzeMedal[0] = {
         ...bronzeMedal[0],
-        playerOne: '積分第1',
-        playerTwo: '積分第2',
+        playerOne: "積分第1",
+        playerTwo: "積分第2"
       };
     }
 
@@ -237,7 +263,11 @@ function App() {
   return (
     <div className="App">
       <Modal
-        classNames={{ modal: 'modal--custom', closeButton: 'modal__closeButton', overlay: 'modal__overlay' }}
+        classNames={{
+          modal: "modal--custom",
+          closeButton: "modal__closeButton",
+          overlay: "modal__overlay"
+        }}
         open={isTipModalOpen}
         onClose={toggleTipModal}
         center
@@ -245,24 +275,21 @@ function App() {
         {blockTip}
       </Modal>
       <Modal
-        classNames={{ modal: 'modal--custom', closeButton: 'modal__closeButton', overlay: 'modal__overlay' }}
+        classNames={{
+          modal: "modal--custom",
+          closeButton: "modal__closeButton",
+          overlay: "modal__overlay"
+        }}
         open={isModalOpen}
         onClose={onCloseModal}
         center
       >
-        <CompetitionForm
-          onCloseModal={onCloseModal}
-          data={objNowGameRecord}
-        />
+        <CompetitionForm onCloseModal={onCloseModal} data={objNowGameRecord} />
       </Modal>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>神奇寶貝之戰</p>
-        <span
-          role="presentation"
-          className="App-link"
-          onClick={toggleTipModal}
-        >
+        <span role="presentation" className="App-link" onClick={toggleTipModal}>
           準備好，決鬥了，嗎！(秘訣點我)
         </span>
         <div className="pokemons">
@@ -271,11 +298,12 @@ function App() {
           <img alt="噴火龍的妹妹火很大" src={imgCharizard} />
         </div>
       </header>
-      <div className="container">
+      <div className="container" style={{ maxWidth: "1100px" }}>
         <h1>
           <img alt="皮卡丘的弟弟皮在養" src={imgPikachu} />
           <span>對戰規則</span>
         </h1>
+        <hr />
         <table className="competition__table">
           <tbody>
             <tr>
@@ -289,7 +317,9 @@ function App() {
               <td>
                 <span>- 採循環賽，勝場數為積分，積分前兩高前進冠軍戰。</span>
                 <br />
-                <span>- 每次對戰依勝場數取得積分，如三勝得3分、兩勝得2分、依此類推。</span>
+                <span>
+                  - 每次對戰依勝場數取得積分，如三勝得3分、兩勝得2分、依此類推。
+                </span>
               </td>
             </tr>
             <tr>
@@ -299,11 +329,16 @@ function App() {
                 <br />
                 <span>- 神奇寶貝大師之稱號，三天 lol</span>
                 <br />
-                <span>- 小編 Donate 的超夢一隻XD</span>
               </td>
             </tr>
           </tbody>
         </table>
+        <h1>
+          <img alt="皮卡丘的弟弟皮在養" src={imgPikachu} />
+          <span>參賽訓練家</span>
+        </h1>
+        <hr />
+        <HeroList />
         <h1>
           <img alt="皮卡丘的弟弟皮在養" src={imgPikachu} />
           <span>賽程</span>
@@ -312,27 +347,19 @@ function App() {
         <div className="tournament-bracket tournament-bracket--rounded">
           <div className="tournament-bracket__round tournament-bracket__round--quarterfinals">
             <h3 className="tournament-bracket__round-title">循環賽</h3>
-            <ul className="tournament-bracket__list">
-              {blockCycles}
-            </ul>
+            <ul className="tournament-bracket__list">{blockCycles}</ul>
           </div>
           <div className="tournament-bracket__round tournament-bracket__round--semifinals">
             <h3 className="tournament-bracket__round-title">循環賽總積分</h3>
-            <ul className="tournament-bracket__list">
-              {blockSemiFinals}
-            </ul>
+            <ul className="tournament-bracket__list">{blockSemiFinals}</ul>
           </div>
           <div className="tournament-bracket__round tournament-bracket__round--bronze">
             <h3 className="tournament-bracket__round-title">季軍戰</h3>
-            <ul className="tournament-bracket__list">
-              {blockBronzeMedal}
-            </ul>
+            <ul className="tournament-bracket__list">{blockBronzeMedal}</ul>
           </div>
           <div className="tournament-bracket__round tournament-bracket__round--gold">
             <h3 className="tournament-bracket__round-title">冠軍戰</h3>
-            <ul className="tournament-bracket__list">
-              {blockGoldMedal}
-            </ul>
+            <ul className="tournament-bracket__list">{blockGoldMedal}</ul>
           </div>
         </div>
       </div>

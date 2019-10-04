@@ -3,6 +3,9 @@
  * Copyright 2016 Jakub Hájek
  * Licensed under MIT (https://opensource.org/licenses/MIT)
  */
+abbr[title] {
+  text-decoration: none;
+}
 
 .tournament-bracket {
   display: flex;
