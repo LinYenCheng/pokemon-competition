@@ -76,6 +76,15 @@ class CompetitionForm extends Component {
         <img src={imgPokeBall} className="competition-form__logo" alt="logo" />
       );
     }
+    if (type === 'cycle-ot') { 
+      options = (
+        <>
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+        </>
+      );
+    }
     if (type === 'semifinal') {
       options = (
         <>

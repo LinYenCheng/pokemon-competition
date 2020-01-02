@@ -55,7 +55,7 @@ function App() {
   }
 
   if (gameRecords.length) {
-    cycles = gameRecords.filter(gameRecord => gameRecord.type === "cycle");
+    cycles = gameRecords.filter(gameRecord => gameRecord.type === "cycle" || gameRecord.type === "cycle-ot");
     semifinals = gameRecords.filter(
       gameRecord => gameRecord.type === "semifinal"
     );
@@ -93,6 +93,7 @@ function App() {
           <div
             className="tournament-bracket__match"
             tabIndex="0"
+            style={{ background:gameRecord.type === 'cycle-ot' ? '#FAD61D' : '#fff'  }}
             onClick={() => {
               if (gameRecord.type !== "semifinal") {
                 setNowRecord(gameRecord);
@@ -104,6 +105,7 @@ function App() {
             <table className="tournament-bracket__table">
               <caption className="tournament-bracket__caption">
                 <time dateTime={gameRecord.date}>{gameRecord.date}</time>
+                {gameRecord.type === 'cycle-ot' && <span>OT!!! </span>}
               </caption>
               <thead className="sr-only">
                 <tr>
