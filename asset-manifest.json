@@ -1,26 +1,17 @@
 {
   "files": {
-    "main.css": "/pokemon-competition/static/css/main.74c4d775.chunk.css",
-    "main.js": "/pokemon-competition/static/js/main.3c9f820c.chunk.js",
-    "main.js.map": "/pokemon-competition/static/js/main.3c9f820c.chunk.js.map",
-    "runtime-main.js": "/pokemon-competition/static/js/runtime-main.adb6f86f.js",
-    "runtime-main.js.map": "/pokemon-competition/static/js/runtime-main.adb6f86f.js.map",
-    "static/js/2.c37dc83e.chunk.js": "/pokemon-competition/static/js/2.c37dc83e.chunk.js",
-    "static/js/2.c37dc83e.chunk.js.map": "/pokemon-competition/static/js/2.c37dc83e.chunk.js.map",
+    "main.css": "/pokemon-competition/static/css/main.fc30b589.css",
+    "main.js": "/pokemon-competition/static/js/main.949fb6e8.js",
+    "static/media/note.png": "/pokemon-competition/static/media/note.a400dfe0857f98f2f301.png",
+    "static/media/note_1.png": "/pokemon-competition/static/media/note_1.dc977faba5b1cc91c2bb.png",
+    "static/media/note_2.png": "/pokemon-competition/static/media/note_2.cf08322f784cdbbe32ec.png",
+    "static/media/pokeball.png": "/pokemon-competition/static/media/pokeball.6d014661c1a95047db10.png",
     "index.html": "/pokemon-competition/index.html",
-    "precache-manifest.de674bb6cafee0b16fa77d21285f2074.js": "/pokemon-competition/precache-manifest.de674bb6cafee0b16fa77d21285f2074.js",
-    "service-worker.js": "/pokemon-competition/service-worker.js",
-    "static/css/main.74c4d775.chunk.css.map": "/pokemon-competition/static/css/main.74c4d775.chunk.css.map",
-    "static/js/2.c37dc83e.chunk.js.LICENSE": "/pokemon-competition/static/js/2.c37dc83e.chunk.js.LICENSE",
-    "static/media/note.png": "/pokemon-competition/static/media/note.7e4a8f88.png",
-    "static/media/note_1.png": "/pokemon-competition/static/media/note_1.9166ca29.png",
-    "static/media/note_2.png": "/pokemon-competition/static/media/note_2.89041746.png",
-    "static/media/pokeball.png": "/pokemon-competition/static/media/pokeball.22c70385.png"
+    "main.fc30b589.css.map": "/pokemon-competition/static/css/main.fc30b589.css.map",
+    "main.949fb6e8.js.map": "/pokemon-competition/static/js/main.949fb6e8.js.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.adb6f86f.js",
-    "static/js/2.c37dc83e.chunk.js",
-    "static/css/main.74c4d775.chunk.css",
-    "static/js/main.3c9f820c.chunk.js"
+    "static/css/main.fc30b589.css",
+    "static/js/main.949fb6e8.js"
   ]
 }
