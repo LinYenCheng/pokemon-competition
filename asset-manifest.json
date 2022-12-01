@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/pokemon-competition/static/css/main.fc30b589.css",
-    "main.js": "/pokemon-competition/static/js/main.949fb6e8.js",
+    "main.js": "/pokemon-competition/static/js/main.69ccc028.js",
     "static/media/note.png": "/pokemon-competition/static/media/note.a400dfe0857f98f2f301.png",
     "static/media/note_1.png": "/pokemon-competition/static/media/note_1.dc977faba5b1cc91c2bb.png",
     "static/media/note_2.png": "/pokemon-competition/static/media/note_2.cf08322f784cdbbe32ec.png",
     "static/media/pokeball.png": "/pokemon-competition/static/media/pokeball.6d014661c1a95047db10.png",
     "index.html": "/pokemon-competition/index.html",
     "main.fc30b589.css.map": "/pokemon-competition/static/css/main.fc30b589.css.map",
-    "main.949fb6e8.js.map": "/pokemon-competition/static/js/main.949fb6e8.js.map"
+    "main.69ccc028.js.map": "/pokemon-competition/static/js/main.69ccc028.js.map"
   },
   "entrypoints": [
     "static/css/main.fc30b589.css",
-    "static/js/main.949fb6e8.js"
+    "static/js/main.69ccc028.js"
   ]
 }
